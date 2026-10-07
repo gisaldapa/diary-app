@@ -1,10 +1,13 @@
-**NAMA :** Gisal Dapa
-**NIM  :** 2430511023
-**KELAS:** 5A
+
+
+
+# **NAMA :** Gisal Dapa
+# **NIM  :** 2430511023
+# **KELAS:** 5A
 
 # Diary App - Mobile Programming
 
-Aplikasi Buku Harian (Diary App) sederhana yang dikembangkan menggunakan **React Native** dengan **Expo CLI** sebagai bagian dari tugas praktikum Mobile Programming.
+Aplikasi Buku Harian (Diary App) sederhana yang dikembangkan menggunakan **React Native** dengan **Expo CLI** sebagai bagian dari tugas Mobile Multi PLatform Kelas .
 
 ## Fitur & Tugas yang Diselesaikan
 - **Struktur Komponen & Folder:** Menggunakan pemisahan folder `src/screens` dan `src/components`[cite: 2, 6].
@@ -24,3 +27,13 @@ Aplikasi Buku Harian (Diary App) sederhana yang dikembangkan menggunakan **React
 3. Buka terminal lalu jalankan perintah untuk memulai server:
    ```bash
    npx expo start
+
+
+## Screenshoot
+
+
+![alt text](<WhatsApp Image 2026-10-07 at 15.59.01.jpeg>)
+
+
+![alt text](<WhatsApp Image 2026-10-07 at 16.16.58.jpeg>)
+
