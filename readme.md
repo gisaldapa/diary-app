@@ -31,6 +31,6 @@ Aplikasi Buku Harian (Diary App) sederhana yang dikembangkan menggunakan **React
 
 ## Screenshot
 
-![Tampilan Diary App 1](./screenshot1.jpg)
+![Tampilan Diary App 1](screenshot1.jpeg)
 
-![Tampilan Diary App 2](./screenshot2.jpg)
+![Tampilan Diary App 2](screenshot2.jpeg)
