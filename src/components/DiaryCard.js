@@ -1,70 +1,76 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
+import { COLORS, SPACE, RADIUS, TYPO } from '../styles/tokens';
 
-// Menambahkan props imageSource (pengganti moodUri) dan mood
-export default function DiaryCard({ title, date, preview, imageSource, mood }) {
-  
-  // Fungsi untuk menentukan warna border berdasarkan props 'mood'
+export default function DiaryCard({ title, date, preview, mood, moodUri, onPress, variant = 'list' }) { 
   const getBorderColor = () => {
     switch (mood) {
-      case 'happy': return '#4ade80';   // Hijau
-      case 'focus': return '#60a5fa';   // Biru
-      case 'calm': return '#a78bfa';    // Ungu
-      case 'excited': return '#fbbf24'; // Kuning
-      case 'tired': return '#f87171';   // Merah
-      default: return '#e5e7eb';        // Abu-abu default
+      case 'happy': return '#4ade80';   
+      case 'focus': return '#60a5fa';   
+      case 'calm': return '#a78bfa';    
+      case 'excited': return '#fbbf24'; 
+      case 'tired': return '#f87171';   
+      default: return COLORS.border;
     }
   };
 
-  return (
-    // Mengaplikasikan warna border dinamis
-    <View style={[styles.card, { borderColor: getBorderColor() }]}>
-      <Image source={imageSource} style={styles.mood} />
-      <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={1}>
-          {title}
-        </Text>
-        <Text style={styles.date}>{date}</Text>
-        <Text
-          style={styles.preview}
-          numberOfLines={3}
-          ellipsizeMode="tail"
-        >
+  return ( 
+    <Pressable 
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.card,
+        variant === 'grid' && styles.cardGrid,
+        { 
+          borderColor: getBorderColor(), 
+          opacity: pressed ? 0.85 : 1 
+        }
+      ]} 
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={`Buka entri harian: ${title}, tanggal ${date}`} 
+    > 
+      <Image 
+        source={{ uri: moodUri }} 
+        style={styles.mood} 
+        accessible={true}
+        accessibilityLabel={`Ikon mood ${mood}`}
+      />
+      <View style={styles.content}> 
+        <Text style={styles.title} numberOfLines={1}>{title}</Text> 
+        <Text style={styles.date}>{date}</Text> 
+        <Text style={styles.preview} numberOfLines={2} ellipsizeMode="tail">
           {preview}
-        </Text>
-      </View>
-    </View>
-  );
+        </Text> 
+      </View> 
+    </Pressable> 
+  ); 
 }
 
-const styles = StyleSheet.create({
-  card: {
-    flexDirection: 'row',
-    gap: 12,
-    padding: 12,
-    borderWidth: 2, // Dipertebal menjadi 2 agar warna border lebih terlihat jelas
-    borderRadius: 12,
-    marginBottom: 12,
-    backgroundColor: '#ffffff',
-  },
-  mood: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-  },
-  content: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: '700',
-  },
-  date: {
-    fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 6,
-  },
-  preview: {
-    fontSize: 14,
-  },
+const styles = StyleSheet.create({ 
+  card: { 
+    flexDirection: 'row', 
+    gap: SPACE.m, 
+    padding: SPACE.m, 
+    borderWidth: 2,
+    borderRadius: RADIUS.card, 
+    backgroundColor: COLORS.surface, 
+  }, 
+  cardGrid: {
+    flexDirection: 'column', // Mengubah layout menjadi tumpuk ke bawah saat mode grid
+    alignItems: 'center',
+    textAlign: 'center',
+  }, 
+  mood: { 
+    width: 64, 
+    height: 64, 
+    borderRadius: RADIUS.avatar,
+    backgroundColor: '#eef2ff',
+  }, 
+  content: { 
+    flex: 1, 
+    width: '100%',
+  }, 
+  title: { fontSize: TYPO.title, fontWeight: '700', color: COLORS.text, marginBottom: 2 }, 
+  date: { fontSize: TYPO.caption, color: COLORS.muted, marginBottom: SPACE.s }, 
+  preview: { fontSize: TYPO.body, color: COLORS.text, lineHeight: 20 }, 
 });
